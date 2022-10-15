@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "358695693336",
+    "project_id": "blowshot-57f84",
+    "storage_bucket": "blowshot-57f84.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358695693336:android:b956548b051e0bccdee76d",
+        "android_client_info": {
+          "package_name": "com.example.blow_shot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358695693336-slidikf574p096klqir806f2aavvd5ob.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1S5lLg-rPSvFwX2Fvc3rwc4fFJ7_VXOI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358695693336-slidikf574p096klqir806f2aavvd5ob.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
