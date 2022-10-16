@@ -10,17 +10,37 @@ class SignInPage extends ConsumerWidget {
     final email = TextEditingController();
     final password = TextEditingController();
     return Scaffold(
-      body: Center(
-          child: Column(
-        children: [
-          TextFormField(),
-          ElevatedButton(
-              onPressed: () {
-                viewModel.signInUser(
-                    email: email.text, password: password.text);
-              },
-              child: const Text("ログイン"))
-        ],
+      body: SingleChildScrollView(
+          child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                  color: Colors.grey.shade200,
+                  offset: const Offset(2, 4),
+                  blurRadius: 5,
+                  spreadRadius: 2)
+            ],
+            gradient: const LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color.fromARGB(255, 245, 251, 72),
+                  Color.fromARGB(230, 228, 108, 16)
+                ])),
+        child: Column(
+          children: [
+            TextFormField(),
+            ElevatedButton(
+                onPressed: () {
+                  viewModel.signInUser(
+                      email: email.text, password: password.text);
+                },
+                child: const Text("ログイン"))
+          ],
+        ),
       )),
     );
   }
