@@ -1,3 +1,4 @@
+import 'package:blow_shot/app/components/page_back_ground.dart';
 import 'package:blow_shot/app/sign_in_page/sign_in_page.dart';
 import 'package:blow_shot/app/sign_up_page/sign_up_page.dart';
 import 'package:flutter/material.dart';
@@ -10,26 +11,12 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-          child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(5)),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                  color: Colors.grey.shade200,
-                  offset: const Offset(2, 4),
-                  blurRadius: 5,
-                  spreadRadius: 2)
-            ],
-            gradient: const LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color.fromARGB(255, 245, 251, 72),
-                  Color.fromARGB(230, 228, 108, 16)
-                ])),
-        child: Column(
+          child: PageBackGround(
+        colors: const [
+          Color.fromARGB(255, 245, 251, 72),
+          Color.fromARGB(230, 228, 108, 16)
+        ],
+        page: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Column(

@@ -1,3 +1,4 @@
+import 'package:blow_shot/app/components/page_back_ground.dart';
 import 'package:blow_shot/app/sign_up_page/sign_up_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,17 +11,39 @@ class SignUpPage extends ConsumerWidget {
     final email = TextEditingController();
     final password = TextEditingController();
     return Scaffold(
-      body: Center(
-          child: Column(
-        children: [
-          TextFormField(),
-          ElevatedButton(
-              onPressed: () {
-                viewModel.signUpUser(
-                    email: email.text, password: password.text);
-              },
-              child: const Text("サインアップ"))
+      body: SingleChildScrollView(
+          child: PageBackGround(
+        colors: const [
+          Color.fromARGB(255, 72, 251, 102),
+          Color.fromARGB(230, 6, 74, 1)
         ],
+        page: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 60.0, bottom: 30.0),
+              child: Container(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextFormField(),
+                ElevatedButton(
+                    onPressed: () {
+                      try {
+                        viewModel.signUpUser(
+                            email: email.text, password: password.text);
+                      } catch (e) {}
+                    },
+                    child: const Text("サインアップ"))
+              ],
+            ),
+          ],
+        ),
       )),
     );
   }

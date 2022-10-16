@@ -1,3 +1,4 @@
+import 'package:blow_shot/app/components/page_back_ground.dart';
 import 'package:blow_shot/app/sign_in_page/sign_in_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,34 +12,36 @@ class SignInPage extends ConsumerWidget {
     final password = TextEditingController();
     return Scaffold(
       body: SingleChildScrollView(
-          child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(5)),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                  color: Colors.grey.shade200,
-                  offset: const Offset(2, 4),
-                  blurRadius: 5,
-                  spreadRadius: 2)
-            ],
-            gradient: const LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color.fromARGB(255, 245, 251, 72),
-                  Color.fromARGB(230, 228, 108, 16)
-                ])),
-        child: Column(
+          child: PageBackGround(
+        colors: const [
+          Color.fromARGB(255, 72, 251, 251),
+          Color.fromARGB(230, 16, 44, 228)
+        ],
+        page: Stack(
           children: [
-            TextFormField(),
-            ElevatedButton(
-                onPressed: () {
-                  viewModel.signInUser(
-                      email: email.text, password: password.text);
-                },
-                child: const Text("ログイン"))
+            Padding(
+              padding: const EdgeInsets.only(top: 60.0, bottom: 30.0),
+              child: Container(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextFormField(),
+                ElevatedButton(
+                    onPressed: () {
+                      try {
+                        viewModel.signInUser(
+                            email: email.text, password: password.text);
+                      } catch (e) {}
+                    },
+                    child: const Text("ログイン"))
+              ],
+            ),
           ],
         ),
       )),
