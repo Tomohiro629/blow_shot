@@ -20,6 +20,7 @@ class SignUpPage extends ConsumerWidget {
             Color.fromARGB(230, 6, 74, 1)
           ],
               page: InputForm(
+                explanation: "アカウントお持ちでない方",
                 onTap: () {
                   try {
                     viewModel.signUpUser(

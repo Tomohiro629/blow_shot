@@ -20,6 +20,7 @@ class SignInPage extends ConsumerWidget {
             Color.fromARGB(230, 16, 44, 228)
           ],
               page: InputForm(
+                  explanation: "アカウント作成済の方",
                   onTap: () {
                     try {
                       viewModel.signInUser(
