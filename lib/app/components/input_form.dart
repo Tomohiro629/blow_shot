@@ -37,6 +37,7 @@ class InputForm extends StatelessWidget {
               SizedBox(
                 width: 250.w,
                 child: TextFormField(
+                  keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(), hintText: "メールアドレス"),
                 ),
@@ -45,6 +46,7 @@ class InputForm extends StatelessWidget {
               SizedBox(
                 width: 250.w,
                 child: TextFormField(
+                  keyboardType: TextInputType.visiblePassword,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(), hintText: "パスワード"),
                 ),
