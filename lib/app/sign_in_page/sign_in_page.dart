@@ -20,14 +20,17 @@ class SignInPage extends ConsumerWidget {
             Color.fromARGB(230, 16, 44, 228)
           ],
               page: InputForm(
-                  explanation: "アカウント作成済の方",
-                  onTap: () {
-                    try {
-                      viewModel.signInUser(
-                          email: email.text, password: password.text);
-                    } catch (e) {}
-                  },
-                  text: 'ログイン'))),
+                explanation: "アカウント作成済の方",
+                onTap: () {
+                  if (email.text.isNotEmpty && password.text.isNotEmpty ||
+                      password.text.length < 8) {
+                    viewModel.signInUser(
+                        email: email.text, password: password.text);
+                  }
+                },
+                text: 'ログイン',
+                errorText: viewModel.errorText,
+              ))),
     );
   }
 }

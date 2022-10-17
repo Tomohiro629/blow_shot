@@ -28,6 +28,7 @@ class SignUpPage extends ConsumerWidget {
                   } catch (e) {}
                 },
                 text: 'サインアップ',
+                errorText: viewModel.errorText,
               ))),
     );
   }

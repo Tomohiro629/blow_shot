@@ -10,6 +10,7 @@ final signUpViewModelProvider = ChangeNotifierProvider<SignUpViewModel>((ref) {
 class SignUpViewModel extends ChangeNotifier {
   final Reader _reader;
   SignUpViewModel(this._reader);
+  String errorText = '';
 
   Future<void> signUpUser(
       {required String email, required String password}) async {

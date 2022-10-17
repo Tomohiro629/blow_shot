@@ -8,10 +8,12 @@ class InputForm extends StatelessWidget {
       {super.key,
       required this.onTap,
       required this.text,
-      required this.explanation});
+      required this.explanation,
+      required this.errorText});
   final void Function() onTap;
   final String text;
   final String explanation;
+  final String errorText;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +59,7 @@ class InputForm extends StatelessWidget {
                 child: TextFormField(
                   keyboardType: TextInputType.visiblePassword,
                   decoration: const InputDecoration(
-                      border: OutlineInputBorder(), hintText: "パスワード"),
+                      border: OutlineInputBorder(), hintText: "パスワード(8文字以上)"),
                 ),
               ),
               const Gap(50),
@@ -65,6 +67,13 @@ class InputForm extends StatelessWidget {
                 color: AppColors.secondary,
                 onPressed: onTap,
                 child: Text(text),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(
+                  errorText,
+                  style: const TextStyle(color: AppColors.caution),
+                ),
               )
             ],
           ),
