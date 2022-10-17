@@ -1,8 +1,9 @@
-import 'package:blow_shot/app/components/input_form.dart';
-import 'package:blow_shot/app/components/page_back_ground.dart';
-import 'package:blow_shot/app/sign_in_page/sign_in_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../components/input_form.dart';
+import '../components/page_back_ground.dart';
+import 'sign_in_view_model.dart';
 
 class SignInPage extends ConsumerWidget {
   const SignInPage({super.key});

@@ -1,6 +1,7 @@
-import 'package:blow_shot/service/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../service/auth_service.dart';
 
 final signUpViewModelProvider = ChangeNotifierProvider<SignUpViewModel>((ref) {
   return SignUpViewModel(ref.read);
