@@ -56,14 +56,17 @@ class HomePage extends StatelessWidget {
             ),
             Column(
               children: [
-                ElevatedButton(
+                MaterialButton(
                     onPressed: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
                         return const LiquidSwipePage();
                       }));
                     },
-                    child: const Text("始める")),
+                    child: const Text(
+                      "撮影開始",
+                      style: TextStyle(fontSize: 30.0),
+                    )),
               ],
             ),
           ],

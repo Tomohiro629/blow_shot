@@ -20,13 +20,17 @@ class SignUpPage extends ConsumerWidget {
             Color.fromARGB(230, 6, 74, 1)
           ],
               page: InputForm(
+                emailController: email,
+                passwordController: password,
+                explanation: "アカウントお持ちでない方",
                 onTap: () {
-                  try {
+                  {
                     viewModel.signUpUser(
                         email: email.text, password: password.text);
-                  } catch (e) {}
+                  }
                 },
                 text: 'サインアップ',
+                errorText: viewModel.errorText,
               ))),
     );
   }
