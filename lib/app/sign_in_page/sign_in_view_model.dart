@@ -20,7 +20,7 @@ class SignInViewModel extends ChangeNotifier {
     } catch (e) {
       if (e.toString() ==
           "[firebase_auth/unknown] Given String is empty or null") {
-        errorText = ("入力に誤りがあります。");
+        errorText = ("メールアドレス又はパスワード未入力です。");
       } else if (e.toString() ==
           "[firebase_auth/user-not-found] There is no user record corresponding to this identifier. The user may have been deleted.") {
         errorText = ("登録のないメールアドレスです。");

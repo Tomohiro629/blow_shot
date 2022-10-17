@@ -20,6 +20,8 @@ class SignInPage extends ConsumerWidget {
             Color.fromARGB(230, 16, 44, 228)
           ],
               page: InputForm(
+                emailController: email,
+                passwordController: password,
                 explanation: "アカウント作成済の方",
                 onTap: () {
                   if (email.text.isNotEmpty && password.text.isNotEmpty ||

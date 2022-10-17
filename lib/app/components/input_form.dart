@@ -8,10 +8,15 @@ class InputForm extends StatelessWidget {
       {super.key,
       required this.onTap,
       required this.text,
+      required this.emailController,
+      required this.passwordController,
       required this.explanation,
       required this.errorText});
+
   final void Function() onTap;
   final String text;
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
   final String explanation;
   final String errorText;
 
@@ -47,6 +52,7 @@ class InputForm extends StatelessWidget {
                 color: Colors.white,
                 width: 250.w,
                 child: TextFormField(
+                  controller: emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(), hintText: "メールアドレス"),
@@ -57,6 +63,7 @@ class InputForm extends StatelessWidget {
                 color: Colors.white,
                 width: 250.w,
                 child: TextFormField(
+                  controller: passwordController,
                   keyboardType: TextInputType.visiblePassword,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(), hintText: "パスワード(8文字以上)"),
