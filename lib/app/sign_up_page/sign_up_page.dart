@@ -20,7 +20,8 @@ class SignUpPage extends ConsumerWidget {
         page: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 60.0, bottom: 30.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 100.0, horizontal: 20.0),
               child: Container(
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(20)),
