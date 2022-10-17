@@ -1,3 +1,4 @@
+import 'package:blow_shot/app/components/input_form.dart';
 import 'package:blow_shot/app/components/page_back_ground.dart';
 import 'package:blow_shot/app/sign_in_page/sign_in_view_model.dart';
 import 'package:flutter/material.dart';
@@ -13,39 +14,18 @@ class SignInPage extends ConsumerWidget {
     return Scaffold(
       body: SingleChildScrollView(
           child: PageBackGround(
-        colors: const [
-          Color.fromARGB(255, 72, 251, 251),
-          Color.fromARGB(230, 16, 44, 228)
-        ],
-        page: Stack(
-          children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 100.0, horizontal: 20.0),
-              child: Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextFormField(),
-                ElevatedButton(
-                    onPressed: () {
-                      try {
-                        viewModel.signInUser(
-                            email: email.text, password: password.text);
-                      } catch (e) {}
-                    },
-                    child: const Text("ログイン"))
-              ],
-            ),
+              colors: const [
+            Color.fromARGB(255, 72, 251, 251),
+            Color.fromARGB(230, 16, 44, 228)
           ],
-        ),
-      )),
+              page: InputForm(
+                  onTap: () {
+                    try {
+                      viewModel.signInUser(
+                          email: email.text, password: password.text);
+                    } catch (e) {}
+                  },
+                  text: 'ログイン'))),
     );
   }
 }
