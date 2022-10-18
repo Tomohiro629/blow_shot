@@ -10,7 +10,7 @@ class PhotoRepository {
   final _firestore = FirebaseFirestore.instance;
 
   Stream<List<Photo>> fetchPhotoStream() {
-    final snapshots = _firestore.collection('photos').snapshots();
+    final snapshots = _firestore.collection(photoPath()).snapshots();
     return snapshots.map(((qs) => qs.docs.isEmpty
         ? []
         : qs.docs.map((doc) => Photo.fromJson(doc.data())).toList()));
@@ -18,7 +18,7 @@ class PhotoRepository {
 
   Future<void> setPhoto(Photo photo) async {
     await _firestore
-        .collection('photos')
+        .collection(photoPath)
         .doc(photo.id)
         .set(photo.toJson(), SetOptions(merge: true));
   }
