@@ -18,5 +18,6 @@ class BlowShotViewModel extends ChangeNotifier {
     final photo = Photo.createPhoto(
         userId: reader(authServiceProvider).userId, imageURL: imageURL);
     await reader(photoRepositoryProvider).setPhoto(photo);
+    notifyListeners();
   }
 }
