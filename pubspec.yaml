@@ -43,6 +43,8 @@ dependencies:
   flutter_riverpod: ^1.0.4
   flutter_screenutil: ^5.5.4
   gap: ^2.0.0
+  image_cropper: ^3.0.0
+  image_picker: ^0.8.6
   liquid_swipe: ^3.0.0
   uuid: ^3.0.6
  
