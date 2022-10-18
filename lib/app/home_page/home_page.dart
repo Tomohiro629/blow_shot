@@ -1,5 +1,7 @@
+import 'package:blow_shot/app/components/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 import '../components/page_back_ground.dart';
 import '../liquid_swipe_page/liquid_swipe_page.dart';
@@ -13,8 +15,8 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
           child: PageBackGround(
         colors: const [
-          Color.fromARGB(255, 245, 251, 72),
-          Color.fromARGB(230, 228, 108, 16)
+          Color.fromARGB(255, 140, 131, 1),
+          Color.fromARGB(230, 244, 76, 4)
         ],
         page: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -48,15 +50,17 @@ class HomePage extends StatelessWidget {
                     ),
                   ],
                 ),
+                Gap(30.h),
                 Text(
                   "-Blow Shot-",
-                  style: TextStyle(fontSize: 20.sp, color: Colors.white),
+                  style: TextStyle(fontSize: 25.sp, color: Colors.white),
                 )
               ],
             ),
             Column(
               children: [
                 MaterialButton(
+                    splashColor: AppColors.accent,
                     onPressed: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
