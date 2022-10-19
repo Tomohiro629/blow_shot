@@ -23,13 +23,23 @@ class SignInPage extends ConsumerWidget {
                 emailController: email,
                 passwordController: password,
                 explanation: "アカウント作成済の方",
-                onTap: () {
-                  if (email.text.isNotEmpty && password.text.isNotEmpty ||
-                      password.text.length < 8) {
-                    viewModel.signInUser(
+                onTap: () async {
+                  try {
+                    await viewModel.signInUser(
                         email: email.text, password: password.text);
+                    // ignore: use_build_context_synchronously
+                    Navigator.pop(context);
+                  } catch (e) {
+                    if (e.toString() ==
+                        "[firebase_auth/unknown] Given String is empty or null") {
+                      viewModel.setErrorText("メールアドレス又はパスワード未入力です。");
+                    } else if (e.toString() ==
+                        "[firebase_auth/user-not-found] There is no user record corresponding to this identifier. The user may have been deleted.") {
+                      viewModel.setErrorText("登録のないメールアドレスです。");
+                    } else {
+                      viewModel.setErrorText("ログインエラー\n再度お試しください。");
+                    }
                   }
-                  Navigator.pop(context);
                 },
                 text: 'ログイン',
                 errorText: viewModel.errorText,

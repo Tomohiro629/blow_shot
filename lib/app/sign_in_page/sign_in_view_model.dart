@@ -14,20 +14,13 @@ class SignInViewModel extends ChangeNotifier {
 
   Future<void> signInUser(
       {required String email, required String password}) async {
-    try {
-      await _reader(authServiceProvider)
-          .signInUser(email: email, password: password);
-    } catch (e) {
-      if (e.toString() ==
-          "[firebase_auth/unknown] Given String is empty or null") {
-        errorText = ("メールアドレス又はパスワード未入力です。");
-      } else if (e.toString() ==
-          "[firebase_auth/user-not-found] There is no user record corresponding to this identifier. The user may have been deleted.") {
-        errorText = ("登録のないメールアドレスです。");
-      } else {
-        errorText = ("ログインエラー\n再度お試しください。");
-      }
-    }
+    await _reader(authServiceProvider)
+        .signInUser(email: email, password: password);
+    notifyListeners();
+  }
+
+  void setErrorText(String errorMsg) {
+    errorText = errorMsg;
     notifyListeners();
   }
 }
