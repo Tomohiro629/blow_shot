@@ -29,6 +29,7 @@ class SignInPage extends ConsumerWidget {
                     viewModel.signInUser(
                         email: email.text, password: password.text);
                   }
+                  Navigator.pop(context);
                 },
                 text: 'ログイン',
                 errorText: viewModel.errorText,
