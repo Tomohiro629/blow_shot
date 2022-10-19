@@ -37,6 +37,8 @@ dependencies:
   firebase_auth: ^3.11.2
   firebase_core: ^1.24.0
   firebase_storage: ^10.3.11
+  flutterfire_ui: ^0.4.3+14
+
 
 #others
   cupertino_icons: ^1.0.2
@@ -45,8 +47,10 @@ dependencies:
   gap: ^2.0.0
   image_cropper: ^3.0.0
   image_picker: ^0.8.6
+  intl: ^0.17.0
   liquid_swipe: ^3.0.0
   uuid: ^3.0.6
+  
  
 
 

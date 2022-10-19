@@ -27,7 +27,7 @@ class ImageCropperService extends ChangeNotifier {
         AndroidUiSettings(
             toolbarTitle: '画像編集',
             toolbarColor: AppColors.primary,
-            toolbarWidgetColor: Colors.white,
+            toolbarWidgetColor: Colors.black,
             initAspectRatio: CropAspectRatioPreset.original,
             lockAspectRatio: false),
       ],
