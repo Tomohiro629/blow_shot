@@ -23,10 +23,29 @@ class SignUpPage extends ConsumerWidget {
                 emailController: email,
                 passwordController: password,
                 explanation: "アカウントお持ちでない方",
-                onTap: () {
-                  {
-                    viewModel.signUpUser(
-                        email: email.text, password: password.text);
+                onTap: () async {
+                  try {
+                    if (password.text.length > 8) {
+                      await viewModel.signUpUser(
+                          email: email.text, password: password.text);
+                      // ignore: use_build_context_synchronously
+                      Navigator.pop(context);
+                    } else {
+                      viewModel.setErrorText("パスワードは8文字以上です");
+                    }
+                  } catch (e) {
+                    if (e.toString() ==
+                        "[firebase_auth/unknown] Given String is empty or null") {
+                      viewModel.setErrorText("メールアドレス又はパスワード未入力です。");
+                    } else if (password.text.length < 8) {
+                      viewModel.setErrorText("パスワードは8文字以上です。");
+                      // ignore: unrelated_type_equality_checks
+                    } else if (e.toString() ==
+                        "[firebase_auth/email-already-in-use] The email address is already in use by another account.") {
+                      viewModel.setErrorText('既にこのメールアドレスは利用されてます。');
+                    } else {
+                      viewModel.setErrorText("登録エラー\n再度お試しください。");
+                    }
                   }
                 },
                 text: 'サインアップ',
