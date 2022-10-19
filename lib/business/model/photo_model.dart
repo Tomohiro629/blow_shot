@@ -1,11 +1,11 @@
+import 'package:blow_shot/service/common_method.dart';
 import 'package:uuid/uuid.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Photo {
   final String id;
   final String userId;
   final String imageURL;
-  final DateTime timeStamp;
+  final String timeStamp;
 
   factory Photo.createPhoto({
     required String userId,
@@ -15,7 +15,7 @@ class Photo {
       id: const Uuid().v4(),
       userId: userId,
       imageURL: imageURL,
-      timeStamp: DateTime.now(),
+      timeStamp: getDateString(DateTime.now()),
     );
   }
   factory Photo.fromJson(Map<String, dynamic> map) {
@@ -23,7 +23,7 @@ class Photo {
       id: map['id'],
       userId: map['userId'],
       imageURL: map['imageURL'],
-      timeStamp: (map['timeStamp'] as Timestamp).toDate(),
+      timeStamp: (map['timeStamp']),
     );
   }
   Map<String, dynamic> toJson() {

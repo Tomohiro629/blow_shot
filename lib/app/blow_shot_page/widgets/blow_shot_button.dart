@@ -23,7 +23,7 @@ class BlowShotButton extends ConsumerWidget {
           child: Icon(
             Icons.photo_camera_outlined,
             color: AppColors.primary,
-            size: 300.sp,
+            size: 260.sp,
           ),
           onPressed: () async {
             await imagePicker.takeCamera();

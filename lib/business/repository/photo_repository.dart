@@ -19,9 +19,7 @@ class PhotoRepository {
   }
 
   Query<Photo> queryTodayPhoto(userId) {
-    final query = _firestore
-        .collection(photoPath(userId))
-        .where("timeStamp", arrayContains: DateTime.now());
+    final query = _firestore.collection(photoPath(userId));
     return query.withConverter(
         fromFirestore: (snapshot, _) => Photo.fromJson(snapshot.data()!),
         toFirestore: (photo, _) => photo.toJson());

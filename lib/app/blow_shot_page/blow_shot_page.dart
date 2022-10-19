@@ -1,6 +1,8 @@
 import 'package:blow_shot/app/blow_shot_page/widgets/blow_shot_button.dart';
+import 'package:blow_shot/service/common_method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterfire_ui/firestore.dart';
 
 import '../../business/model/photo_model.dart';
@@ -37,12 +39,33 @@ class BlowShotPage extends ConsumerWidget {
                   query: viewModel.todayPhotoQuery(),
                   itemBuilder: (context, snapshot) {
                     final photo = snapshot.data();
-                    return Column(
-                      children: [
-                        const BlowShotButton(),
-                        Text(photo.timeStamp.toString())
-                      ],
-                    );
+                    return photo.timeStamp == getDateString(DateTime.now())
+                        ? SizedBox(
+                            height: 500.h,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  "本日の写真！",
+                                  style: TextStyle(
+                                    fontSize: 40.sp,
+                                  ),
+                                ),
+                                Image.network(photo.imageURL),
+                                Text(
+                                  "また明日！！",
+                                  style: TextStyle(
+                                    fontSize: 30.sp,
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        : SizedBox(
+                            height: 500.h,
+                            child: const Align(
+                                alignment: Alignment.center,
+                                child: BlowShotButton()));
                   },
                 ),
               ),
