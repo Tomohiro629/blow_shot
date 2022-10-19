@@ -45,6 +45,7 @@ dependencies:
   gap: ^2.0.0
   image_cropper: ^3.0.0
   image_picker: ^0.8.6
+  intl: ^0.17.0
   liquid_swipe: ^3.0.0
   uuid: ^3.0.6
  
