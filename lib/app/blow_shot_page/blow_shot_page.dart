@@ -1,15 +1,12 @@
-import 'package:blow_shot/app/blow_shot_page/blow_shot_view_model.dart';
-import 'package:blow_shot/app/components/app_colors.dart';
-import 'package:blow_shot/app/components/page_back_ground.dart';
-import 'package:blow_shot/service/cloud_storage_service.dart';
+import 'package:blow_shot/app/blow_shot_page/widgets/blow_shot_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
+import 'package:flutterfire_ui/firestore.dart';
 
 import '../../business/model/photo_model.dart';
-import '../../service/image_cropper_service.dart';
-import '../../service/image_picker_service.dart';
+import '../components/app_colors.dart';
+import '../components/page_back_ground.dart';
+import 'blow_shot_view_model.dart';
 
 class BlowShotPage extends ConsumerWidget {
   const BlowShotPage({super.key});
@@ -17,9 +14,6 @@ class BlowShotPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.watch(blowShotViewModel);
-    final storageService = ref.watch(storageServiceProvider);
-    final imagePicker = ref.watch(imagePickerServiceProvider);
-    final croppedImage = ref.watch(imageCropperServiceProvider);
 
     return Scaffold(
       body: PageBackGround(
@@ -39,56 +33,33 @@ class BlowShotPage extends ConsumerWidget {
                   ],
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
+                child: FirestoreListView<Photo>(
+                  query: viewModel.todayPhotoQuery(),
+                  itemBuilder: (context, snapshot) {
+                    final photo = snapshot.data();
+                    return Column(
+                      children: [
+                        const BlowShotButton(),
+                        Text(photo.timeStamp.toString())
+                      ],
+                    );
+                  },
+                ),
               ),
             ),
-            StreamBuilder(
-                stream: viewModel.fetchPhotoStream(),
-                builder: ((context, AsyncSnapshot<List<Photo>> snapshot) {
-                  return Center(
-                      child: snapshot.hasData
-                          ? Center(
-                              child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("問答無用で保存！\nまた明日！！",
-                                    style: TextStyle(fontSize: 30.sp)),
-                                Gap(30.h),
-                              ],
-                            ))
-                          : Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                MaterialButton(
-                                  child: Icon(
-                                    Icons.photo_camera_outlined,
-                                    color: AppColors.primary,
-                                    size: 300.sp,
-                                  ),
-                                  onPressed: () async {
-                                    await imagePicker.takeCamera();
-                                    if (imagePicker.imagePath != null) {
-                                      croppedImage.cropImage(
-                                          imageFile: imagePicker.imagePath!);
-                                    }
-                                    if (imagePicker.imagePath != null) {
-                                      await storageService
-                                          .uploadPostImageAndGetUrl(
-                                              file: imagePicker.imagePath!);
-                                      viewModel
-                                          .setPhoto(storageService.imageURL);
-                                    }
-                                  },
-                                ),
-                                Text(
-                                  "一撃で決めろ！",
-                                  style: TextStyle(fontSize: 40.sp),
-                                )
-                              ],
-                            ));
-                }))
           ],
         ),
       ),
     );
   }
 }
+
+
+// Center(
+//                       child: Column(
+//                           mainAxisAlignment: MainAxisAlignment.center,
+//                           children: snapshot.data!.map((Photo photo) {
+//                             return Center(
+//                                 child: Text("問答無用で保存！\nまた明日！！",
+//                                     style: TextStyle(fontSize: 30.sp)));
+//                           })))
