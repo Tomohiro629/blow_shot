@@ -1,9 +1,7 @@
 import 'package:blow_shot/app/blow_shot_page/widgets/blow_shot_button.dart';
-import 'package:blow_shot/service/common_method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutterfire_ui/firestore.dart';
 
 import '../../business/model/photo_model.dart';
 import '../components/app_colors.dart';
@@ -23,66 +21,67 @@ class BlowShotPage extends ConsumerWidget {
         page: Stack(
           children: [
             Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 100.0, horizontal: 20.0),
-              child: Container(
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Color.fromARGB(175, 255, 255, 255),
-                        spreadRadius: 5,
-                        offset: Offset(1, 1))
-                  ],
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                ),
-                child: FirestoreListView<Photo>(
-                  query: viewModel.todayPhotoQuery(),
-                  itemBuilder: (context, snapshot) {
-                    final photo = snapshot.data();
-                    return photo.timeStamp == getDateString(DateTime.now())
-                        ? SizedBox(
-                            height: 500.h,
-                            child: Column(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 100.0, horizontal: 20.0),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          color: Color.fromARGB(175, 255, 255, 255),
+                          spreadRadius: 5,
+                          offset: Offset(1, 1))
+                    ],
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                  child: StreamBuilder<List<Photo>>(
+                    stream: viewModel.fetchPhotoStream(),
+                    builder: (context, AsyncSnapshot<List<Photo>> snapshot) {
+                      if (snapshot.hasData) {
+                        return SizedBox(
+                          height: 500.h,
+                          child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  "本日の写真！",
-                                  style: TextStyle(
-                                    fontSize: 40.sp,
-                                  ),
-                                ),
-                                Image.network(photo.imageURL),
-                                Text(
-                                  "また明日！！",
-                                  style: TextStyle(
-                                    fontSize: 30.sp,
-                                  ),
-                                )
-                              ],
-                            ),
-                          )
-                        : SizedBox(
-                            height: 500.h,
-                            child: const Align(
-                                alignment: Alignment.center,
-                                child: BlowShotButton()));
-                  },
-                ),
-              ),
-            ),
+                              children: snapshot.data!.map((Photo photo) {
+                                return Column(
+                                  children: [
+                                    Text(
+                                      "本日の写真！",
+                                      style: TextStyle(
+                                        fontSize: 40.sp,
+                                      ),
+                                    ),
+                                    Image.network(photo.imageURL),
+                                    Text(
+                                      "また明日！！",
+                                      style: TextStyle(
+                                        fontSize: 30.sp,
+                                      ),
+                                    )
+                                  ],
+                                );
+                              }).toList()),
+                        );
+                      }
+                      if (snapshot.hasError) {
+                        Center(
+                          child: Text(
+                            "エラー",
+                            style: TextStyle(
+                                color: AppColors.caution, fontSize: 30.sp),
+                          ),
+                        );
+                      }
+                      return SizedBox(
+                          height: 500.h,
+                          child: const Align(
+                              alignment: Alignment.center,
+                              child: BlowShotButton()));
+                    },
+                  ),
+                )),
           ],
         ),
       ),
     );
   }
 }
-
-
-// Center(
-//                       child: Column(
-//                           mainAxisAlignment: MainAxisAlignment.center,
-//                           children: snapshot.data!.map((Photo photo) {
-//                             return Center(
-//                                 child: Text("問答無用で保存！\nまた明日！！",
-//                                     style: TextStyle(fontSize: 30.sp)));
-//                           })))

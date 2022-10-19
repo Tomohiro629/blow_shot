@@ -1,3 +1,4 @@
+import 'package:blow_shot/service/common_method.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,7 +13,10 @@ class PhotoRepository {
   final _firestore = FirebaseFirestore.instance;
 
   Stream<List<Photo>> fetchPhotoStream(userId) {
-    final snapshots = _firestore.collection(photoPath(userId)).snapshots();
+    final snapshots = _firestore
+        .collection(photoPath(userId))
+        .where("timeStamp", isEqualTo: getDateString(DateTime.now()))
+        .snapshots();
     return snapshots.map(((qs) => qs.docs.isEmpty
         ? []
         : qs.docs.map((doc) => Photo.fromJson(doc.data())).toList()));
