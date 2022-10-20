@@ -1,4 +1,3 @@
-import 'package:blow_shot/service/common_method.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,7 +14,7 @@ class PhotoRepository {
   Stream<List<Photo>> fetchPhotoStream(userId) {
     final snapshots = _firestore
         .collection(photoPath(userId))
-        .where("timeStamp", isEqualTo: getDateString(DateTime.now()))
+        .where("userId", isEqualTo: userId)
         .snapshots();
     return snapshots.map(((qs) => qs.docs.isEmpty
         ? []
