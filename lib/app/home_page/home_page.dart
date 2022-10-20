@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 
 import '../components/page_back_ground.dart';
 import '../liquid_swipe_page/liquid_swipe_page.dart';
+import '../sign_in_page/sign_in_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -66,7 +67,7 @@ class HomePage extends StatelessWidget {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
                         return const LiquidSwipePage(
-                          pages: [SignUpPage(), SignUpPage()],
+                          pages: [SignUpPage(), SignInPage()],
                         );
                       }));
                     },
