@@ -1,10 +1,12 @@
 import 'package:blow_shot/app/components/app_colors.dart';
+import 'package:blow_shot/app/sign_up_page/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import '../components/page_back_ground.dart';
 import '../liquid_swipe_page/liquid_swipe_page.dart';
+import '../sign_in_page/sign_in_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -64,7 +66,9 @@ class HomePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
-                        return const LiquidSwipePage();
+                        return const LiquidSwipePage(
+                          pages: [SignUpPage(), SignInPage()],
+                        );
                       }));
                     },
                     child: const Text(

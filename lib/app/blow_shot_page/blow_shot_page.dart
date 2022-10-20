@@ -19,7 +19,10 @@ class BlowShotPage extends ConsumerWidget {
 
     return Scaffold(
       body: PageBackGround(
-        colors: const [AppColors.accent, Colors.black],
+        colors: const [
+          Color.fromARGB(200, 30, 99, 151),
+          AppColors.accent,
+        ],
         page: Stack(
           children: [
             Padding(
@@ -90,9 +93,10 @@ class BlowShotPage extends ConsumerWidget {
                             );
                           }
                           return const Center(
-                              child: CircularProgressIndicator(
-                            color: AppColors.accent,
-                          ));
+                            child: CircularProgressIndicator(
+                              color: AppColors.accent,
+                            ),
+                          );
                         },
                       ),
                     ],
