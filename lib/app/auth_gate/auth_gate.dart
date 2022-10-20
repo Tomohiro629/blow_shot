@@ -1,4 +1,6 @@
+import 'package:blow_shot/app/albums_page/albums_page.dart';
 import 'package:blow_shot/app/blow_shot_page/blow_shot_page.dart';
+import 'package:blow_shot/app/liquid_swipe_page/liquid_swipe_page.dart';
 import 'package:blow_shot/service/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +19,9 @@ class AuthGate extends ConsumerWidget {
       stream: authUser,
       builder: ((context, snapshot) {
         final isLoggedIn = snapshot.data != null;
-        return isLoggedIn ? const BlowShotPage() : const HomePage();
+        return isLoggedIn
+            ? const LiquidSwipePage(pages: [BlowShotPage(), AlbumsPage()])
+            : const HomePage();
       }),
     );
   }
