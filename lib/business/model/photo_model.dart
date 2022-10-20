@@ -17,7 +17,7 @@ class Photo {
       id: const Uuid().v4(),
       userId: userId,
       imageURL: imageURL,
-      dateTime: getDateString(DateTime.now()),
+      dateTime: getMonthString(DateTime.now()),
       timeStamp: DateTime.now(),
     );
   }

@@ -5,5 +5,5 @@ String getDateString(DateTime date) {
 }
 
 String getMonthString(DateTime date) {
-  return DateFormat("MM").format(date);
+  return DateFormat("MM月").format(date);
 }

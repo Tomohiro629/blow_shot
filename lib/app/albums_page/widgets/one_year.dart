@@ -1,7 +1,7 @@
 import 'package:blow_shot/service/common_method.dart';
 import 'package:flutter/material.dart';
 
-import '../../month_photo_page/month_photo_page.dart';
+import '../../month_photos_page/month_photo_page.dart';
 
 class OneYear extends StatelessWidget {
   const OneYear({
@@ -51,7 +51,9 @@ class OneYear extends StatelessWidget {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return const MonthPhotoPage();
+                    return MonthPhotosPage(
+                      selectedMonth: "${month.toString()}月",
+                    );
                   },
                 ),
               );
