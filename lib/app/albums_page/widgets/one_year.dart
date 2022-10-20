@@ -1,7 +1,5 @@
-import 'package:blow_shot/app/components/app_colors.dart';
 import 'package:blow_shot/service/common_method.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../month_photo_page/month_photo_page.dart';
 
