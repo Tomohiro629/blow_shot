@@ -1,4 +1,5 @@
 import 'package:blow_shot/app/components/app_colors.dart';
+import 'package:blow_shot/app/sign_up_page/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -64,7 +65,9 @@ class HomePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
-                        return const LiquidSwipePage();
+                        return const LiquidSwipePage(
+                          pages: [SignUpPage(), SignUpPage()],
+                        );
                       }));
                     },
                     child: const Text(
