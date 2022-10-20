@@ -51,7 +51,8 @@ class BlowShotPage extends ConsumerWidget {
                                       MainAxisAlignment.spaceAround,
                                   children: snapshot.data!.map((Photo photo) {
                                     return Center(
-                                      child: photo.timeStamp == today
+                                      child: getDateString(photo.timeStamp) ==
+                                              today
                                           ? Column(
                                               children: [
                                                 Text(
