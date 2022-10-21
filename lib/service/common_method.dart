@@ -5,7 +5,7 @@ String getDateString(DateTime date) {
 }
 
 String getYearString(DateTime date) {
-  return DateFormat("yyyy年").format(date);
+  return DateFormat("yyyy").format(date);
 }
 
 String getMonthString(DateTime date) {

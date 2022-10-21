@@ -6,7 +6,8 @@ class Photo {
   final String id;
   final String userId;
   final String imageURL;
-  final String dateTime;
+  final String yyyyMM;
+  final String yyyyMMdd;
   final DateTime timeStamp;
 
   factory Photo.createPhoto({
@@ -17,9 +18,10 @@ class Photo {
       id: const Uuid().v4(),
       userId: userId,
       imageURL: imageURL,
-      dateTime:
-          "${getYearString(DateTime.now())}${getMonthString(DateTime.now())}月",
+      yyyyMM:
+          "${getYearString(DateTime.now())}年${getMonthString(DateTime.now())}月",
       //2022年〇月表記で保存
+      yyyyMMdd: getDateString(DateTime.now()),
       timeStamp: DateTime.now(),
     );
   }
@@ -28,7 +30,8 @@ class Photo {
       id: map['id'],
       userId: map['userId'],
       imageURL: map['imageURL'],
-      dateTime: map['dateTime'],
+      yyyyMM: map['yyyyMM'],
+      yyyyMMdd: map['yyyyMMdd'],
       timeStamp: (map['timeStamp'] as Timestamp).toDate(),
     );
   }
@@ -37,7 +40,8 @@ class Photo {
       'id': id,
       'userId': userId,
       'imageURL': imageURL,
-      'dateTime': dateTime,
+      'yyyyMM': yyyyMM,
+      'yyyyMMdd': yyyyMMdd,
       'timeStamp': timeStamp,
     };
   }
@@ -46,6 +50,7 @@ class Photo {
       {required this.id,
       required this.userId,
       required this.imageURL,
-      required this.dateTime,
+      required this.yyyyMM,
+      required this.yyyyMMdd,
       required this.timeStamp});
 }
