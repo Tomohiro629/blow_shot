@@ -15,7 +15,7 @@ class BlowShotPage extends StatelessWidget {
     return Scaffold(
       body: PageBackGround(
         colors: const [
-          Color.fromARGB(200, 30, 99, 151),
+          Color.fromARGB(163, 35, 135, 217),
           AppColors.accent,
         ],
         page: Stack(

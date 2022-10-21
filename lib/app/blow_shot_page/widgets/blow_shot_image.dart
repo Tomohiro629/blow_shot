@@ -1,6 +1,8 @@
+import 'package:blow_shot/app/components/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 import '../../../business/model/photo_model.dart';
 import '../../../service/common_method.dart';
@@ -17,9 +19,7 @@ class BlowShotImage extends ConsumerWidget {
       decoration: const BoxDecoration(
         boxShadow: [
           BoxShadow(
-              color: Color.fromARGB(255, 81, 164, 143),
-              spreadRadius: 5,
-              offset: Offset(1, 1))
+              color: AppColors.secondary, spreadRadius: 5, offset: Offset(1, 1))
         ],
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
@@ -46,11 +46,25 @@ class BlowShotImage extends ConsumerWidget {
                                     fontSize: 40.sp,
                                   ),
                                 ),
-                                SizedBox(
-                                  width: double.infinity,
-                                  height: 200.h,
-                                  child: Image.network(photo.imageURL),
+                                const Gap(50),
+                                Container(
+                                  height: 250.h,
+                                  decoration: BoxDecoration(
+                                      boxShadow: const [
+                                        BoxShadow(
+                                            color: Color.fromARGB(
+                                                255, 175, 194, 2),
+                                            blurRadius: 10.0,
+                                            spreadRadius: 1.0,
+                                            offset: Offset(5, 5))
+                                      ],
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      image: DecorationImage(
+                                        image: NetworkImage(photo.imageURL),
+                                        fit: BoxFit.cover,
+                                      )),
                                 ),
+                                const Gap(50),
                                 Text(
                                   "また明日！！",
                                   style: TextStyle(
