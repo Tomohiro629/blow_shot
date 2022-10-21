@@ -17,7 +17,9 @@ class Photo {
       id: const Uuid().v4(),
       userId: userId,
       imageURL: imageURL,
-      dateTime: "${getMonthString(DateTime.now())}月",
+      dateTime:
+          "${getYearString(DateTime.now())}${getMonthString(DateTime.now())}月",
+      //2022年〇月表記で保存
       timeStamp: DateTime.now(),
     );
   }
