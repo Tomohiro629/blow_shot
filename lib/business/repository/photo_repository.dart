@@ -11,10 +11,12 @@ final photoRepositoryProvider = Provider<PhotoRepository>((ref) {
 class PhotoRepository {
   final _firestore = FirebaseFirestore.instance;
 
-  Stream<List<Photo>> fetchPhotoStream(userId) {
+  Stream<List<Photo>> fetchDayPhotoStream(
+      {required String userId, required String today}) {
     final snapshots = _firestore
         .collection(photoPath(userId))
         .where("userId", isEqualTo: userId)
+        .where("yyyyMMdd", isEqualTo: today)
         .snapshots();
     return snapshots.map(((qs) => qs.docs.isEmpty
         ? []
