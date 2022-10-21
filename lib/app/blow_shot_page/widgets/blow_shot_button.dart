@@ -26,6 +26,20 @@ class BlowShotButton extends ConsumerWidget {
             size: 260.sp,
           ),
           onPressed: () async {
+            showGeneralDialog(
+                context: context,
+                barrierColor: Colors.black.withOpacity(0.5),
+                pageBuilder:
+                    (BuildContext context, animation, secondaryAnimation) {
+                  return Center(
+                    child: Stack(
+                      children: const [
+                        CircularProgressIndicator(),
+                      ],
+                    ),
+                  );
+                });
+
             await imagePicker.takeCamera();
             if (imagePicker.imagePath != null) {
               croppedImage.cropImage(imageFile: imagePicker.imagePath!);
@@ -35,6 +49,8 @@ class BlowShotButton extends ConsumerWidget {
                   file: imagePicker.imagePath!);
               ref.watch(blowShotViewModel).setPhoto(storageService.imageURL);
             }
+            // ignore: use_build_context_synchronously
+            Navigator.pop(context);
           },
         ),
         Text(
