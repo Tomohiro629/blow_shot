@@ -29,36 +29,57 @@ class MonthPhotosPage extends ConsumerWidget {
             return Stack(
               alignment: Alignment.bottomCenter,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30.0),
-                    color: const Color.fromARGB(255, 154, 149, 149),
-                  ),
-                  height: 350.0.h,
-                  width: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      "2022年${DateTime.now().month.toString()}月",
-                      style: TextStyle(
-                          fontSize: 20.sp, color: AppColors.secondary),
-                      textAlign: TextAlign.center,
+                Padding(
+                  padding: EdgeInsets.only(top: 20.h),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(30),
+                          bottomRight: Radius.circular(30)),
+                      color: Colors.black54,
+                    ),
+                    height: 350.0.h,
+                    width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        "2022年${DateTime.now().month.toString()}月",
+                        style: TextStyle(
+                            fontSize: 20.sp, color: AppColors.secondary),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
                 Container(
                   height: 300.0.h,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30.0),
+                    borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(30),
+                        bottomRight: Radius.circular(30)),
                     image: DecorationImage(
                       image: NetworkImage(photo.imageURL),
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                Container(
-                  color: AppColors.secondary,
-                  child: Text("${getDayString(photo.timeStamp)}月"),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.secondary,
+                      borderRadius: BorderRadius.circular(50.0),
+                    ),
+                    width: 90.w,
+                    height: 70.h,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "${getDayString(photo.timeStamp)}日",
+                        style: TextStyle(fontSize: 30.sp),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             );
