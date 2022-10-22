@@ -27,7 +27,7 @@ class PhotoRepository {
       {required String userId, required String selectedMonth}) {
     final query = _firestore
         .collection(photoPath(userId))
-        .where("dateTime", isEqualTo: selectedMonth)
+        .where("yyyyMM", isEqualTo: selectedMonth)
         .orderBy("timeStamp", descending: false);
     return query.withConverter(
         fromFirestore: (snapshot, _) => Photo.fromJson(snapshot.data()!),
