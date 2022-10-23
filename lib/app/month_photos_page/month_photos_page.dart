@@ -16,6 +16,7 @@ class MonthPhotosPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.watch(monthPhotosViewModelProvider);
+    final now = DateTime.now();
     return Scaffold(
       body: PageBackGround(
         colors: const [
@@ -43,7 +44,7 @@ class MonthPhotosPage extends ConsumerWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
-                        "2022年${DateTime.now().month.toString()}月",
+                        "2022年${now.month.toString()}月",
                         style: TextStyle(
                             fontSize: 20.sp, color: AppColors.secondary),
                         textAlign: TextAlign.center,
@@ -53,12 +54,39 @@ class MonthPhotosPage extends ConsumerWidget {
                 ),
                 Dismissible(
                   key: Key(photo.imageURL),
-                  onDismissed: (direction) {
+                  onDismissed: (direction) async {
                     photo;
                     if (direction == DismissDirection.startToEnd) {
+                      final prevPhoto = await viewModel.getSelectedDayPhoto(
+                          getDateString(now.subtract(const Duration(days: 1))));
+                      if (prevPhoto != null) {
+                        Container(
+                          height: 300.0.h,
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(
+                                bottomLeft: Radius.circular(30),
+                                bottomRight: Radius.circular(30)),
+                            image: DecorationImage(
+                              image: NetworkImage(prevPhoto.imageURL),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Text(
+                              "${getDayString(photo.timeStamp)}日",
+                              style: TextStyle(
+                                  fontSize: 30.sp,
+                                  backgroundColor: AppColors.secondary),
+                            ),
+                          ),
+                        );
+                      }
                       print("左から右へ");
                     } else {
-                      print("右から左へ");
+                      final nextPhoto = await viewModel.getSelectedDayPhoto(
+                          getDateString(now.add(const Duration(days: 1))));
+                      print("$nextPhoto右から左へ");
                     }
                   },
                   child: Container(
