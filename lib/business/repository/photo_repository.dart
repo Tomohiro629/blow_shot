@@ -23,6 +23,15 @@ class PhotoRepository {
         : qs.docs.map((doc) => Photo.fromJson(doc.data())).toList()));
   }
 
+  Future<List<Photo?>> getSlectedDayPhoto(
+      {required String userId, required String selectedDay}) async {
+    final qs = await _firestore
+        .collection(photoPath(userId))
+        .where("yyyyMMdd", isEqualTo: selectedDay)
+        .get();
+    return qs.docs.map((doc) => Photo.fromJson(doc.data())).toList();
+  }
+
   Query<Photo> queryTodayPhotos(
       {required String userId, required String today}) {
     final query = _firestore
