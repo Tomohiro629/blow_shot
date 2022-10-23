@@ -27,7 +27,7 @@ class BlowShotPage extends StatelessWidget {
                 decoration: const BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                        color: Color.fromARGB(255, 81, 164, 143),
+                        color: AppColors.secondary,
                         spreadRadius: 5,
                         offset: Offset(1, 1))
                   ],
