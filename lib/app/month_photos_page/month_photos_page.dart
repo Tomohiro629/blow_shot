@@ -23,7 +23,7 @@ class MonthPhotosPage extends ConsumerWidget {
           Color.fromARGB(230, 1, 74, 72)
         ],
         page: FirestoreListView<Photo>(
-          query: viewModel.queryMonthPhotos(selectedMonth),
+          query: viewModel.queryTodayPhotos(selectedMonth),
           itemBuilder: (context, snapshot) {
             final photo = snapshot.data();
             return Stack(
@@ -51,32 +51,34 @@ class MonthPhotosPage extends ConsumerWidget {
                     ),
                   ),
                 ),
-                Container(
-                  height: 300.0.h,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30)),
-                    image: DecorationImage(
-                      image: NetworkImage(photo.imageURL),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
+                Dismissible(
+                  key: Key(photo.imageURL),
+                  onDismissed: (direction) {
+                    photo;
+                    if (direction == DismissDirection.startToEnd) {
+                      print("左から右へ");
+                    } else {
+                      print("右から左へ");
+                    }
+                  },
                   child: Container(
+                    height: 300.0.h,
                     decoration: BoxDecoration(
-                      color: AppColors.secondary,
-                      borderRadius: BorderRadius.circular(50.0),
+                      borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(30),
+                          bottomRight: Radius.circular(30)),
+                      image: DecorationImage(
+                        image: NetworkImage(photo.imageURL),
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                    width: 90.w,
-                    height: 70.h,
                     child: Align(
-                      alignment: Alignment.center,
+                      alignment: Alignment.bottomCenter,
                       child: Text(
                         "${getDayString(photo.timeStamp)}日",
-                        style: TextStyle(fontSize: 30.sp),
+                        style: TextStyle(
+                            fontSize: 30.sp,
+                            backgroundColor: AppColors.secondary),
                       ),
                     ),
                   ),

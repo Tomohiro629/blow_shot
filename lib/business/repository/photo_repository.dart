@@ -23,11 +23,11 @@ class PhotoRepository {
         : qs.docs.map((doc) => Photo.fromJson(doc.data())).toList()));
   }
 
-  Query<Photo> queryMonthPhotos(
-      {required String userId, required String selectedMonth}) {
+  Query<Photo> queryTodayPhotos(
+      {required String userId, required String today}) {
     final query = _firestore
         .collection(photoPath(userId))
-        .where("yyyyMM", isEqualTo: selectedMonth)
+        .where("yyyyMMdd", isEqualTo: today)
         .orderBy("timeStamp", descending: false);
     return query.withConverter(
         fromFirestore: (snapshot, _) => Photo.fromJson(snapshot.data()!),

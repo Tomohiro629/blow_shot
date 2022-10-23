@@ -1,3 +1,4 @@
+import 'package:blow_shot/service/common_method.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,9 +16,15 @@ class MonthPhotosViewModel extends ChangeNotifier {
   final Reader reader;
   MonthPhotosViewModel(this.reader);
 
-  Query<Photo> queryMonthPhotos(selectedMonth) {
+  Stream<List<Photo>> fetchDayPhotoStream(selectedDay) {
     final userId = reader(authServiceProvider).userId;
     return reader(photoRepositoryProvider)
-        .queryMonthPhotos(userId: userId, selectedMonth: selectedMonth);
+        .fetchDayPhotoStream(userId: userId, today: selectedDay);
+  }
+
+  Query<Photo> queryTodayPhotos(selectedMonth) {
+    final userId = reader(authServiceProvider).userId;
+    return reader(photoRepositoryProvider)
+        .queryTodayPhotos(userId: userId, today: getDateString(DateTime.now()));
   }
 }
