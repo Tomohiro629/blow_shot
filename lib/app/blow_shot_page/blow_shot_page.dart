@@ -1,9 +1,10 @@
-import 'package:blow_shot/app/blow_shot_page/widgets/blow_shot_button.dart';
-import 'package:blow_shot/app/blow_shot_page/widgets/blow_shot_image.dart';
 import 'package:flutter/material.dart';
 
 import '../components/app_colors.dart';
+import '../components/base_app_bar.dart';
 import '../components/page_back_ground.dart';
+import 'widgets/blow_shot_button.dart';
+import 'widgets/blow_shot_image.dart';
 
 class BlowShotPage extends StatelessWidget {
   const BlowShotPage({super.key});
@@ -13,6 +14,11 @@ class BlowShotPage extends StatelessWidget {
     BuildContext context,
   ) {
     return Scaffold(
+      appBar: const BaseAppBar(
+        title: Text("きょうのいちまい"),
+        color: Colors.indigo,
+        widgets: [],
+      ),
       body: PageBackGround(
         colors: const [AppColors.accent, AppColors.secondary],
         page: Stack(

@@ -1,13 +1,15 @@
-import 'package:blow_shot/app/components/app_colors.dart';
-import 'package:blow_shot/app/month_photos_page/month_photos_view_model.dart';
-import 'package:blow_shot/service/common_method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterfire_ui/firestore.dart';
 
 import '../../business/model/photo_model.dart';
+import '../../service/auth_service.dart';
+import '../../service/common_method.dart';
+import '../components/app_colors.dart';
+import '../components/base_app_bar.dart';
 import '../components/page_back_ground.dart';
+import 'month_photos_view_model.dart';
 
 class MonthPhotosPage extends ConsumerWidget {
   const MonthPhotosPage({super.key, required this.selectedMonth});
@@ -18,6 +20,19 @@ class MonthPhotosPage extends ConsumerWidget {
     final viewModel = ref.watch(monthPhotosViewModelProvider);
     final now = DateTime.now();
     return Scaffold(
+      appBar: BaseAppBar(
+          title: Text(selectedMonth),
+          widgets: [
+            Padding(
+              padding: const EdgeInsets.only(right: 20.0),
+              child: IconButton(
+                  onPressed: () {
+                    ref.watch(authServiceProvider).logOut();
+                  },
+                  icon: const Icon(Icons.logout_outlined)),
+            ),
+          ],
+          color: const Color.fromARGB(255, 21, 69, 24)),
       body: PageBackGround(
         colors: const [Color.fromARGB(255, 72, 251, 227), AppColors.secondary],
         page: Column(

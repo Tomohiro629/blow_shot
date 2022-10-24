@@ -1,7 +1,8 @@
-import 'package:blow_shot/app/components/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+
+import 'app_colors.dart';
 
 class InputForm extends StatelessWidget {
   const InputForm(
@@ -28,61 +29,64 @@ class InputForm extends StatelessWidget {
           padding:
               const EdgeInsets.symmetric(vertical: 100.0, horizontal: 20.0),
           child: Container(
-            decoration: const BoxDecoration(
-              boxShadow: [
+            height: 500.h,
+            decoration: BoxDecoration(
+              border: Border.all(width: 2, color: AppColors.primary),
+              boxShadow: const [
                 BoxShadow(
-                    color: Color.fromARGB(175, 255, 255, 255),
+                    color: Color.fromARGB(150, 255, 255, 255),
                     spreadRadius: 5,
                     offset: Offset(1, 1))
               ],
-              borderRadius: BorderRadius.all(Radius.circular(20)),
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
             ),
-          ),
-        ),
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                explanation,
-                style: const TextStyle(fontSize: 18),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    explanation,
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                  const Gap(80),
+                  Container(
+                    color: Colors.white,
+                    width: 250.w,
+                    child: TextFormField(
+                      controller: emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(), hintText: "メールアドレス"),
+                    ),
+                  ),
+                  const Gap(30),
+                  Container(
+                    color: Colors.white,
+                    width: 250.w,
+                    child: TextFormField(
+                      controller: passwordController,
+                      keyboardType: TextInputType.visiblePassword,
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: "パスワード(8文字以上)"),
+                    ),
+                  ),
+                  const Gap(50),
+                  MaterialButton(
+                    color: AppColors.secondary,
+                    onPressed: onTap,
+                    child: Text(text),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      errorText,
+                      style: const TextStyle(color: AppColors.caution),
+                    ),
+                  )
+                ],
               ),
-              const Gap(50),
-              Container(
-                color: Colors.white,
-                width: 250.w,
-                child: TextFormField(
-                  controller: emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(), hintText: "メールアドレス"),
-                ),
-              ),
-              const Gap(30),
-              Container(
-                color: Colors.white,
-                width: 250.w,
-                child: TextFormField(
-                  controller: passwordController,
-                  keyboardType: TextInputType.visiblePassword,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(), hintText: "パスワード(8文字以上)"),
-                ),
-              ),
-              const Gap(50),
-              MaterialButton(
-                color: AppColors.secondary,
-                onPressed: onTap,
-                child: Text(text),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text(
-                  errorText,
-                  style: const TextStyle(color: AppColors.caution),
-                ),
-              )
-            ],
+            ),
           ),
         ),
       ],
