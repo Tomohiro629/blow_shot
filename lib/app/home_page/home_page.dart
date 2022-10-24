@@ -16,10 +16,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
           child: PageBackGround(
-        colors: const [
-          Color.fromARGB(255, 140, 131, 1),
-          Color.fromARGB(230, 244, 76, 4)
-        ],
+        colors: const [Color.fromARGB(238, 255, 255, 8), AppColors.secondary],
         page: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -55,7 +52,9 @@ class HomePage extends StatelessWidget {
                 Gap(30.h),
                 Text(
                   "-Blow Shot-",
-                  style: TextStyle(fontSize: 25.sp, color: Colors.white),
+                  style: TextStyle(
+                    fontSize: 25.sp,
+                  ),
                 )
               ],
             ),
@@ -72,7 +71,7 @@ class HomePage extends StatelessWidget {
                       }));
                     },
                     child: const Text(
-                      "撮影開始",
+                      "写真\nをとり\nはじめる",
                       style: TextStyle(fontSize: 30.0),
                     )),
               ],

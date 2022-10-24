@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../components/app_colors.dart';
+import '../components/base_app_bar.dart';
 import '../components/input_form.dart';
 import '../components/page_back_ground.dart';
 import 'sign_in_view_model.dart';
@@ -13,11 +15,16 @@ class SignInPage extends ConsumerWidget {
     final email = TextEditingController();
     final password = TextEditingController();
     return Scaffold(
+      appBar: const BaseAppBar(
+        title: Text("さいんあっぷ"),
+        color: Color.fromARGB(230, 16, 44, 228),
+        widgets: [],
+      ),
       body: SingleChildScrollView(
           child: PageBackGround(
               colors: const [
             Color.fromARGB(255, 72, 251, 251),
-            Color.fromARGB(230, 16, 44, 228)
+            AppColors.secondary
           ],
               page: InputForm(
                 emailController: email,

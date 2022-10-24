@@ -1,3 +1,5 @@
+import 'package:blow_shot/app/components/app_colors.dart';
+import 'package:blow_shot/app/components/base_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -13,11 +15,16 @@ class SignUpPage extends ConsumerWidget {
     final email = TextEditingController();
     final password = TextEditingController();
     return Scaffold(
+      appBar: const BaseAppBar(
+        title: Text("ろぐいん"),
+        color: Color.fromARGB(230, 6, 74, 1),
+        widgets: [],
+      ),
       body: SingleChildScrollView(
           child: PageBackGround(
               colors: const [
             Color.fromARGB(255, 72, 251, 102),
-            Color.fromARGB(230, 6, 74, 1)
+            AppColors.secondary
           ],
               page: InputForm(
                 emailController: email,
