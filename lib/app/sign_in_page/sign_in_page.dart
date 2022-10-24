@@ -16,7 +16,7 @@ class SignInPage extends ConsumerWidget {
     final password = TextEditingController();
     return Scaffold(
       appBar: const BaseAppBar(
-        title: Text("さいんあっぷ"),
+        title: Text("ろぐいん"),
         color: Color.fromARGB(230, 16, 44, 228),
         widgets: [],
       ),

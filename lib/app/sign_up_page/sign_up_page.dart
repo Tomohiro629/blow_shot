@@ -16,7 +16,7 @@ class SignUpPage extends ConsumerWidget {
     final password = TextEditingController();
     return Scaffold(
       appBar: const BaseAppBar(
-        title: Text("ろぐいん"),
+        title: Text("さいんあっぷ"),
         color: Color.fromARGB(230, 6, 74, 1),
         widgets: [],
       ),
