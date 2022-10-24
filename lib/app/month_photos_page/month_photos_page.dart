@@ -19,101 +19,110 @@ class MonthPhotosPage extends ConsumerWidget {
     final now = DateTime.now();
     return Scaffold(
       body: PageBackGround(
-        colors: const [
-          Color.fromARGB(255, 72, 251, 227),
-          Color.fromARGB(230, 1, 74, 72)
-        ],
-        page: FirestoreListView<Photo>(
-          query: viewModel.queryTodayPhotos(selectedMonth),
-          itemBuilder: (context, snapshot) {
-            final photo = snapshot.data();
-            return Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 20.h),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(30),
-                          bottomRight: Radius.circular(30)),
-                      color: Colors.black54,
-                    ),
-                    height: 350.0.h,
-                    width: double.infinity,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        "2022年${now.month.toString()}月",
-                        style: TextStyle(
-                            fontSize: 20.sp, color: AppColors.secondary),
-                        textAlign: TextAlign.center,
+        colors: const [Color.fromARGB(255, 72, 251, 227), AppColors.secondary],
+        page: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 500.h,
+              child: FirestoreListView<Photo>(
+                query: viewModel.queryTodayPhotos(selectedMonth),
+                itemBuilder: (context, snapshot) {
+                  final photo = snapshot.data();
+                  return Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 20.h),
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(30),
+                                bottomRight: Radius.circular(30)),
+                            color: Colors.black54,
+                          ),
+                          height: 350.0.h,
+                          width: double.infinity,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(
+                              "2022年${now.month.toString()}月",
+                              style: TextStyle(
+                                  fontSize: 20.sp, color: AppColors.secondary),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-                Dismissible(
-                  key: Key(photo.imageURL),
-                  onDismissed: (direction) async {
-                    photo;
-                    if (direction == DismissDirection.startToEnd) {
-                      final prevPhoto = await viewModel.getSelectedDayPhoto(
-                          getDateString(now.subtract(const Duration(days: 1))));
-                      if (prevPhoto != null) {
-                        Container(
+                      Dismissible(
+                        key: Key(photo.imageURL),
+                        onDismissed: (direction) async {
+                          photo;
+                          if (direction == DismissDirection.startToEnd) {
+                            final prevPhoto = await viewModel
+                                .getSelectedDayPhoto(getDateString(
+                                    now.subtract(const Duration(days: 1))));
+                            if (prevPhoto != null) {}
+                          } else {
+                            final nextPhoto = await viewModel
+                                .getSelectedDayPhoto(getDateString(
+                                    now.add(const Duration(days: 1))));
+                            print(nextPhoto!.yyyyMMdd);
+                          }
+                        },
+                        background: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Text(
+                              "Back",
+                              style: TextStyle(
+                                  color: AppColors.secondary, fontSize: 50.sp),
+                            ),
+                          ),
+                        ),
+                        secondaryBackground: Align(
+                          alignment: Alignment.centerRight,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Text(
+                              "Next",
+                              style: TextStyle(
+                                  color: AppColors.secondary, fontSize: 50.sp),
+                            ),
+                          ),
+                        ),
+                        child: Container(
                           height: 300.0.h,
                           decoration: BoxDecoration(
                             borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(30),
                                 bottomRight: Radius.circular(30)),
                             image: DecorationImage(
-                              image: NetworkImage(prevPhoto.imageURL),
+                              image: NetworkImage(photo.imageURL),
                               fit: BoxFit.cover,
                             ),
                           ),
-                          child: Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Text(
-                              "${getDayString(photo.timeStamp)}日",
-                              style: TextStyle(
-                                  fontSize: 30.sp,
-                                  backgroundColor: AppColors.secondary),
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 10.0),
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Text(
+                                "${getDayString(photo.timeStamp)}日",
+                                style: TextStyle(
+                                    fontSize: 30.sp,
+                                    backgroundColor: AppColors.secondary),
+                              ),
                             ),
                           ),
-                        );
-                      }
-                      print("左から右へ");
-                    } else {
-                      final nextPhoto = await viewModel.getSelectedDayPhoto(
-                          getDateString(now.add(const Duration(days: 1))));
-                      print("$nextPhoto右から左へ");
-                    }
-                  },
-                  child: Container(
-                    height: 300.0.h,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(30),
-                          bottomRight: Radius.circular(30)),
-                      image: DecorationImage(
-                        image: NetworkImage(photo.imageURL),
-                        fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Text(
-                        "${getDayString(photo.timeStamp)}日",
-                        style: TextStyle(
-                            fontSize: 30.sp,
-                            backgroundColor: AppColors.secondary),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            );
-          },
+                    ],
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
