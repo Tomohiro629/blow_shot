@@ -1,4 +1,5 @@
 import 'package:blow_shot/app/albums_page/widgets/one_year.dart';
+import 'package:blow_shot/app/components/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../components/page_back_ground.dart';
@@ -13,8 +14,8 @@ class AlbumsPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: PageBackGround(
             colors: const [
-              Color.fromARGB(162, 233, 72, 251),
-              Color.fromARGB(230, 55, 1, 74)
+              Color.fromARGB(161, 222, 14, 245),
+              AppColors.secondary
             ],
             page: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
