@@ -59,36 +59,34 @@ class MonthPhotosPage extends ConsumerWidget {
                     if (direction == DismissDirection.startToEnd) {
                       final prevPhoto = await viewModel.getSelectedDayPhoto(
                           getDateString(now.subtract(const Duration(days: 1))));
-                      if (prevPhoto != null) {
-                        Container(
-                          height: 300.0.h,
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.only(
-                                bottomLeft: Radius.circular(30),
-                                bottomRight: Radius.circular(30)),
-                            image: DecorationImage(
-                              image: NetworkImage(prevPhoto.imageURL),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          child: Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Text(
-                              "${getDayString(photo.timeStamp)}日",
-                              style: TextStyle(
-                                  fontSize: 30.sp,
-                                  backgroundColor: AppColors.secondary),
-                            ),
-                          ),
-                        );
-                      }
-                      print("左から右へ");
+                      if (prevPhoto != null) {}
                     } else {
                       final nextPhoto = await viewModel.getSelectedDayPhoto(
                           getDateString(now.add(const Duration(days: 1))));
-                      print("$nextPhoto右から左へ");
                     }
                   },
+                  background: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text(
+                        "Back",
+                        style: TextStyle(
+                            color: AppColors.secondary, fontSize: 50.sp),
+                      ),
+                    ),
+                  ),
+                  secondaryBackground: Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text(
+                        "Next",
+                        style: TextStyle(
+                            color: AppColors.secondary, fontSize: 50.sp),
+                      ),
+                    ),
+                  ),
                   child: Container(
                     height: 300.0.h,
                     decoration: BoxDecoration(
@@ -100,13 +98,16 @@ class MonthPhotosPage extends ConsumerWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Text(
-                        "${getDayString(photo.timeStamp)}日",
-                        style: TextStyle(
-                            fontSize: 30.sp,
-                            backgroundColor: AppColors.secondary),
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 10.0),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          "${getDayString(photo.timeStamp)}日",
+                          style: TextStyle(
+                              fontSize: 30.sp,
+                              backgroundColor: AppColors.secondary),
+                        ),
                       ),
                     ),
                   ),
