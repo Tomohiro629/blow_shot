@@ -54,7 +54,7 @@ class MonthPhotosPage extends ConsumerWidget {
                             borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(30),
                                 bottomRight: Radius.circular(30)),
-                            color: Colors.black54,
+                            color: Color.fromARGB(255, 21, 69, 24),
                           ),
                           height: 350.0.h,
                           width: double.infinity,
@@ -77,12 +77,28 @@ class MonthPhotosPage extends ConsumerWidget {
                             final prevPhoto = await viewModel
                                 .getSelectedDayPhoto(getDateString(
                                     now.subtract(const Duration(days: 1))));
-                            if (prevPhoto != null) {}
+                            if (prevPhoto != null) {
+                              // ignore: use_build_context_synchronously
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) => MonthPhotosPage(
+                                            selectedMonth: prevPhoto.yyyyMMdd,
+                                          ))));
+                              print(prevPhoto.yyyyMMdd);
+                            }
                           } else {
                             final nextPhoto = await viewModel
                                 .getSelectedDayPhoto(getDateString(
                                     now.add(const Duration(days: 1))));
                             print(nextPhoto!.yyyyMMdd);
+                            // ignore: use_build_context_synchronously
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) => MonthPhotosPage(
+                                          selectedMonth: nextPhoto.yyyyMMdd,
+                                        ))));
                           }
                         },
                         background: Align(
@@ -122,11 +138,16 @@ class MonthPhotosPage extends ConsumerWidget {
                             padding: const EdgeInsets.only(bottom: 10.0),
                             child: Align(
                               alignment: Alignment.bottomCenter,
-                              child: Text(
-                                "${getDayString(photo.timeStamp)}日",
-                                style: TextStyle(
-                                    fontSize: 30.sp,
-                                    backgroundColor: AppColors.secondary),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.black),
+                                child: Text(
+                                  "${getDayString(photo.timeStamp)}日",
+                                  style: TextStyle(
+                                      fontSize: 30.sp,
+                                      color: AppColors.secondary),
+                                ),
                               ),
                             ),
                           ),
