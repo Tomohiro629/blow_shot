@@ -58,6 +58,7 @@ class OneYear extends StatelessWidget {
                   },
                 ),
               );
+              print("${DateTime.now().year}年${month.toString()}月");
             },
           ),
         ),

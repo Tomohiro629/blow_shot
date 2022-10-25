@@ -30,7 +30,8 @@ class MonthPhotosViewModel extends ChangeNotifier {
 
   Query<Photo> queryTodayPhotos(selectedMonth) {
     final userId = reader(authServiceProvider).userId;
-    return reader(photoRepositoryProvider)
-        .queryTodayPhotos(userId: userId, today: getDateString(DateTime.now()));
+    final now = DateTime.now();
+    return reader(photoRepositoryProvider).queryTodayPhotos(
+        userId: userId, today: "$selectedMonth${getDayString(now)}日");
   }
 }
