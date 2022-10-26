@@ -1,7 +1,7 @@
 import 'package:blow_shot/app/components/app_colors.dart';
 import 'package:blow_shot/app/components/base_app_bar.dart';
 import 'package:blow_shot/app/components/page_back_ground.dart';
-import 'package:blow_shot/sairi_photos.dart';
+import 'package:blow_shot/app/swiper_view_demo/sairi_photos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
