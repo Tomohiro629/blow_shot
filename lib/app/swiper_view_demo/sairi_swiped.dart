@@ -29,14 +29,11 @@ class SairiSwiped extends ConsumerWidget {
                   fit: BoxFit.cover,
                 ));
           }),
-          index: 0,
           itemCount: images.length,
           itemWidth: 300.0.w,
           itemHeight: 500.0.h,
           pagination: const SwiperPagination(),
-          // control: const SwiperControl(),
-          autoplay: false,
-          loop: true,
+          control: const SwiperControl(),
         ),
       ),
     );
