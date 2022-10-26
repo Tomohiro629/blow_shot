@@ -1,4 +1,4 @@
-import 'package:blow_shot/sairi_swiped.dart';
+import 'package:blow_shot/app/swiper_view_demo/sairi_swiped.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
