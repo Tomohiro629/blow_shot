@@ -1,8 +1,6 @@
 import 'package:blow_shot/app/month_photos_page/widgets/month_photos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 
 import '../../service/auth_service.dart';
 import '../components/app_colors.dart';

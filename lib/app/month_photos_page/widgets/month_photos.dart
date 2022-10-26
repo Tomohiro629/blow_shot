@@ -30,8 +30,6 @@ class MonthPhotos extends ConsumerWidget {
             if (isMonthDate) {
               return Stack(
                   children: snapshot.data!.map((Photo photo) {
-                final List<Photo> images = [photo];
-
                 return SizedBox(
                   child: Stack(
                     alignment: Alignment.bottomCenter,
