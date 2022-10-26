@@ -29,6 +29,7 @@ class PhotoRepository {
         .collection(photoPath(userId))
         .where("userId", isEqualTo: userId)
         .where("yyyyMM", isEqualTo: selectedMonth)
+        .orderBy("timeStamp", descending: false)
         .snapshots();
     return snapshots.map(((qs) => qs.docs.isEmpty
         ? []
