@@ -1,4 +1,3 @@
-import 'package:blow_shot/tinder/tinder_page.dart';
 import 'package:flutter/material.dart';
 
 import '../components/app_colors.dart';
@@ -44,22 +43,6 @@ class BlowShotPage extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: MaterialButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return const TinderPage();
-                            },
-                          ),
-                        );
-                      },
-                      child: const Text("Tinder Start"))),
-            )
           ],
         ),
       ),
