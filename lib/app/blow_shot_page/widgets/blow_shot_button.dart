@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../service/cloud_storage_service.dart';
-import '../../../service/image_cropper_service.dart';
 import '../../../service/image_picker_service.dart';
 import '../../components/app_colors.dart';
 import '../blow_shot_view_model.dart';
@@ -14,7 +13,6 @@ class BlowShotButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final storageService = ref.watch(storageServiceProvider);
     final imagePicker = ref.watch(imagePickerServiceProvider);
-    final croppedImage = ref.watch(imageCropperServiceProvider);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -41,9 +39,7 @@ class BlowShotButton extends ConsumerWidget {
                 });
 
             await imagePicker.takeCamera();
-            if (imagePicker.imagePath != null) {
-              croppedImage.cropImage(imageFile: imagePicker.imagePath!);
-            }
+
             if (imagePicker.imagePath != null) {
               await storageService.uploadPostImageAndGetUrl(
                   file: imagePicker.imagePath!);
