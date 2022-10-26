@@ -53,7 +53,7 @@ class OneYear extends StatelessWidget {
                   builder: (context) {
                     return MonthPhotosPage(
                       selectedMonth:
-                          "${DateTime.now().year}年${month.toString()}月${getDayString(DateTime.now())}日",
+                          "${DateTime.now().year}年${month.toString()}月",
                     );
                   },
                 ),

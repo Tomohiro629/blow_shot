@@ -1,3 +1,4 @@
+import 'package:blow_shot/sairi_swiped.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -42,7 +43,8 @@ class AlbumsPage extends ConsumerWidget {
                   padding: EdgeInsets.all(50.0),
                   child: Text(
                     "月　一覧",
-                    style: TextStyle(fontSize: 40.0),
+                    style:
+                        TextStyle(fontSize: 40.0, color: AppColors.secondary),
                   ),
                 ),
                 GridView.count(
@@ -51,6 +53,18 @@ class AlbumsPage extends ConsumerWidget {
                   crossAxisCount: 3,
                   children: months,
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: MaterialButton(
+                    child: const Text("sairi photos"),
+                    onPressed: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return const SairiSwiped();
+                      }));
+                    },
+                  ),
+                )
               ],
             )),
       ),
