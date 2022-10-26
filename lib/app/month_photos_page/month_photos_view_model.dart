@@ -21,10 +21,10 @@ class MonthPhotosViewModel extends ChangeNotifier {
         .fetchDayPhotoStream(userId: userId, today: selectedDay);
   }
 
-  Future<Photo?> getSelectedDayPhoto(selectedDay) {
+  Stream<List<Photo>> fetchMonthPhotoStream(selectedMonth) {
     final userId = reader(authServiceProvider).userId;
     return reader(photoRepositoryProvider)
-        .getSlectedDayPhoto(userId: userId, selectedDay: selectedDay);
+        .fetchMonthPhotoStream(userId: userId, selectedMonth: selectedMonth);
   }
 
   Query<Photo> queryTodayPhotos(selectedMonth) {
