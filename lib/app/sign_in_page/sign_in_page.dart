@@ -48,7 +48,7 @@ class SignInPage extends ConsumerWidget {
                     }
                   }
                 },
-                text: 'ログイン',
+                text: 'ろぐいん',
                 errorText: viewModel.errorText,
               ))),
     );
