@@ -50,29 +50,41 @@ class InputForm extends StatelessWidget {
                   ),
                   const Gap(80),
                   Container(
-                    color: Colors.white,
                     width: 250.w,
-                    child: TextFormField(
-                      controller: emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(), hintText: "メールアドレス"),
+                    decoration: const BoxDecoration(
+                      color: AppColors.secondary,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: TextFormField(
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: const InputDecoration(hintText: "メールアドレス"),
+                      ),
                     ),
                   ),
                   const Gap(30),
                   Container(
-                    color: Colors.white,
                     width: 250.w,
-                    child: TextFormField(
-                      controller: passwordController,
-                      keyboardType: TextInputType.visiblePassword,
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: "パスワード(8文字以上)"),
+                    decoration: const BoxDecoration(
+                      color: AppColors.secondary,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: TextFormField(
+                        controller: passwordController,
+                        keyboardType: TextInputType.visiblePassword,
+                        decoration:
+                            const InputDecoration(hintText: "パスワード(8文字以上)"),
+                      ),
                     ),
                   ),
                   const Gap(50),
                   MaterialButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      side: BorderSide(color: AppColors.primary, width: 5.w),
+                    ),
                     color: AppColors.secondary,
                     onPressed: onTap,
                     child: Text(text),

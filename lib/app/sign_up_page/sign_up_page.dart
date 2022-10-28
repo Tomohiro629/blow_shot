@@ -34,6 +34,17 @@ class SignUpPage extends ConsumerWidget {
                   try {
                     await viewModel.signUpUser(
                         email: email.text, password: password.text);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          "アカウント作成しました。",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        backgroundColor: AppColors.primary,
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
                     // ignore: use_build_context_synchronously
                     Navigator.pop(context);
                   } catch (e) {
