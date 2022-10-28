@@ -32,14 +32,21 @@ class SignUpPage extends ConsumerWidget {
                 explanation: "アカウントお持ちでない方",
                 onTap: () async {
                   try {
-                    if (password.text.length > 8) {
-                      await viewModel.signUpUser(
-                          email: email.text, password: password.text);
-                      // ignore: use_build_context_synchronously
-                      Navigator.pop(context);
-                    } else {
-                      viewModel.setErrorText("パスワードは8文字以上です");
-                    }
+                    await viewModel.signUpUser(
+                        email: email.text, password: password.text);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          "アカウント作成しました。",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        backgroundColor: AppColors.primary,
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                    // ignore: use_build_context_synchronously
+                    Navigator.pop(context);
                   } catch (e) {
                     if (e.toString() ==
                         "[firebase_auth/unknown] Given String is empty or null") {
@@ -55,7 +62,7 @@ class SignUpPage extends ConsumerWidget {
                     }
                   }
                 },
-                text: 'サインアップ',
+                text: 'しんきとうろく',
                 errorText: viewModel.errorText,
               ))),
     );

@@ -34,6 +34,17 @@ class SignInPage extends ConsumerWidget {
                   try {
                     await viewModel.signInUser(
                         email: email.text, password: password.text);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          "ろぐいんしました。",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        backgroundColor: AppColors.primary,
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
                     // ignore: use_build_context_synchronously
                     Navigator.pop(context);
                   } catch (e) {
@@ -48,7 +59,7 @@ class SignInPage extends ConsumerWidget {
                     }
                   }
                 },
-                text: 'ログイン',
+                text: 'ろぐいん',
                 errorText: viewModel.errorText,
               ))),
     );
