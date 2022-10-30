@@ -1,13 +1,10 @@
+import 'package:blow_shot/app/components/logout_dialog.dart';
 import 'package:flutter/material.dart';
 
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const BaseAppBar(
-      {super.key,
-      required this.title,
-      required this.widgets,
-      required this.color});
+  const BaseAppBar({super.key, required this.title, required this.color});
   final Text title;
-  final List<Widget> widgets;
+
   final Color color;
   @override
   Widget build(
@@ -15,7 +12,18 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   ) {
     return AppBar(
       title: title,
-      actions: widgets,
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 20.0),
+          child: IconButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) => const LogoutDialog());
+              },
+              icon: const Icon(Icons.logout_outlined)),
+        )
+      ],
       centerTitle: true,
       backgroundColor: color,
       elevation: 10,
