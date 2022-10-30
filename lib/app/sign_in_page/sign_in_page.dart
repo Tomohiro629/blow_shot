@@ -18,7 +18,6 @@ class SignInPage extends ConsumerWidget {
       appBar: const BaseAppBar(
         title: Text("ろぐいん"),
         color: Color.fromARGB(230, 16, 44, 228),
-        widgets: [],
       ),
       body: SingleChildScrollView(
           child: PageBackGround(
@@ -37,7 +36,7 @@ class SignInPage extends ConsumerWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text(
-                          "ろぐいんしました。",
+                          "ログインしました。",
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.black),
                         ),

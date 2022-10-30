@@ -1,34 +1,21 @@
 import 'package:blow_shot/app/swiper_view_demo/sairi_swiped.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../service/auth_service.dart';
 import '../components/app_colors.dart';
 import '../components/base_app_bar.dart';
 import '../components/page_back_ground.dart';
 import 'widgets/one_year.dart';
 
-class AlbumsPage extends ConsumerWidget {
+class AlbumsPage extends StatelessWidget {
   const AlbumsPage({super.key});
   @override
   Widget build(
     BuildContext context,
-    WidgetRef ref,
   ) {
     return Scaffold(
-      appBar: BaseAppBar(
-        title: const Text("私のあるばむ"),
+      appBar: const BaseAppBar(
+        title: Text("私のあるばむ"),
         color: Colors.purple,
-        widgets: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20.0),
-            child: IconButton(
-                onPressed: () {
-                  ref.watch(authServiceProvider).logOut();
-                },
-                icon: const Icon(Icons.logout_outlined)),
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: PageBackGround(

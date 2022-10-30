@@ -18,7 +18,6 @@ class SignUpPage extends ConsumerWidget {
       appBar: const BaseAppBar(
         title: Text("さいんあっぷ"),
         color: Color.fromARGB(230, 6, 74, 1),
-        widgets: [],
       ),
       body: SingleChildScrollView(
           child: PageBackGround(
