@@ -17,7 +17,6 @@ class BlowShotPage extends StatelessWidget {
       appBar: const BaseAppBar(
         title: Text("きょうのいちまい"),
         color: Colors.indigo,
-        widgets: [],
       ),
       body: PageBackGround(
         colors: const [AppColors.accent, AppColors.secondary],

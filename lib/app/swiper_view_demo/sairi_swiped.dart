@@ -14,7 +14,6 @@ class SairiSwiped extends ConsumerWidget {
     return Scaffold(
       appBar: const BaseAppBar(
         title: Text("さいりコレクション"),
-        widgets: [],
         color: Color.fromARGB(165, 220, 94, 136),
       ),
       body: PageBackGround(
